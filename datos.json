@@ -1,0 +1,18 @@
+[
+    {
+        "matricula": 2020030038,
+        "nombre": "Enrique Sandoval Torres",
+        "sexo": "M",
+        "materias": ["Programación Web","Base de Datos","Ingles"]
+    },{
+        "matricula": 2022032044,
+        "nombre": "Marco Vinicius Jr",
+        "sexo": "Dudoso",
+        "materias": ["Programación Web","Base de Datos","Ingles"]
+    },{
+        "matricula": 2022030001,
+        "nombre": "Angelito Guti Romero",
+        "sexo": "Muy Macho",
+        "materias": ["Programación Web","Base de Datos","Ingles"]
+    }
+]
