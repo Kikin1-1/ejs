@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +10,71 @@
 
 <%- include('partials/nav.ejs') %>
 
-<body class="container">
-    <center>
-        <h3>Practica 03</h3>
-    </center>
-</div>
+<body class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="text-center">Preexamen</h3>
+        </div>
+        <div class="card-body">
+            <form action="/pago" method="post">
+                <div class="form-group mb-3">
+                    <label for="numRecibo">Num. Recibo</label>
+                    <input type="number" name="numRecibo" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="puesto">Puesto</label>
+                    <select name="puesto" id="puesto" class="form-control">
+                        <option value="100" <%= puesto === 100 ? 'selected' : '' %>>1 auxiliar</option>
+                        <option value="200" <%= puesto === 200 ? 'selected' : '' %>>2 Albañil</option>
+                        <option value="300" <%= puesto === 300 ? 'selected' : '' %>>3 Ing. de Obra</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="nivel">Nivel</label>
+                    <select name="nivel" id="nivel" class="form-control">
+                        <option value="0.05" <%= nivel === 0.05 ? 'selected' : '' %>>1 Base</option>
+                        <option value="0.03" <%= nivel === 0.03 ? 'selected' : '' %>>2 Eventual</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="diasTrabajados">Dias Trabajados</label>
+                    <input type="text" name="diasTrabajados" id="diasTrabajados" class="form-control" value="<%= diasTrabajados %>" required>
+                </div>
+                <div class="form-group mb-3">
+                    <h3>Pagos</h3>
+                    <hr>
+                    <% 
+                    if (diasTrabajados){
+                    let calculoPago = diasTrabajados * puesto;
+                    let impuesto = calculoPago * nivel;
+                    let pagoTotal = calculoPago - impuesto;
+                    %>
+                    <div class="form-group mb-3">
+                        <label for="calculoPago">Calculo Pago</label>
+                        <input type="text" id="calculoPago" class="form-control" value="<%= calculoPago %>" readonly>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="impuesto">Impuestos</label>
+                        <input type="text" id="impuesto" class="form-control" value="<%= impuesto %>" readonly>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="pagoTotal">Pago Total</label>
+                        <input type="text" id="pagoTotal" class="form-control" value="<%= pagoTotal %>" readonly>
+                    </div>
+                </div>
+                <% } %>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <a href="/pago" class="btn btn-secondary">Limpiar</a>
+                </div>
+            </form>
+        </div>
+    </div>
 
 <%- include('partials/footer.ejs') %>
-
 </body>
+</html>

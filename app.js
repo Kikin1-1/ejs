@@ -43,9 +43,25 @@ app.post("/cotizacion",(req,res)=>{
     res.render("practica02",params);
 })
 
-app.get("/practica3",(req,res)=>{
-    res.render("practica03");
+app.get("/pago",(req,res)=>{
+    const params = {
+        puesto: req.query.puesto,
+        nivel: req.query.nivel,
+        diasTrabajados: req.query.diasTrabajados,
+    }
+
+
+    res.render("practica03",params);
 })
+app.post("/pago",(req,res)=>{
+    const params = {
+        puesto: parseFloat(req.body.puesto),
+        nivel: parseFloat(req.body.nivel),
+        diasTrabajados: req.body.diasTrabajados,
+    }
+    res.render("practica03",params);
+})
+
 
 app.post("/p01",(req,res)=>{
     // parametros a recibir los datos
