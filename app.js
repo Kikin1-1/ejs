@@ -45,6 +45,8 @@ app.post("/cotizacion",(req,res)=>{
 
 app.get("/pago",(req,res)=>{
     const params = {
+        numRecibo: req.query.numRecibo,
+        nombre: req.query.nombre,
         puesto: req.query.puesto,
         nivel: req.query.nivel,
         diasTrabajados: req.query.diasTrabajados,
@@ -55,6 +57,8 @@ app.get("/pago",(req,res)=>{
 })
 app.post("/pago",(req,res)=>{
     const params = {
+        numRecibo: parseInt(req.body.numRecibo),
+        nombre: req.body.nombre,
         puesto: parseFloat(req.body.puesto),
         nivel: parseFloat(req.body.nivel),
         diasTrabajados: req.body.diasTrabajados,
