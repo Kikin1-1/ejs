@@ -8,6 +8,7 @@ const path = require('path');
 //generar el objeto principal
 
 let datos = JSON.parse(fs.readFileSync("datos.json","utf8"));
+let data = JSON.parse(fs.readFileSync("productos.json","utf8"));
 const app = express();
 app.set("view engine", "ejs");
 
@@ -19,6 +20,25 @@ app.use(express.json());
 app.get("/", (req,res)=>{
     res.render("index",{titulo:"Listado de Alumnos",listado:datos});
 })
+app.get("/papeleria", (req,res)=>{
+    const params = {
+        tipo: parseFloat(req.query.tipo),
+        total: 0,
+        lista: data,
+       
+    }
+    res.render("preexamen",params);
+})
+app.post("/papeleria", (req,res)=>{
+    const total = parseInt(req.body.total);
+    const params = {
+        tipo: parseInt(req.body.tipo),
+        total : total,
+        lista: data,
+    }
+    res.render("preexamen",params);
+})
+
 
 app.get("/practica1",(req,res)=>{
     res.render("practica01",{numero:""});
