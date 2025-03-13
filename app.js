@@ -23,17 +23,14 @@ app.get("/", (req,res)=>{
 app.get("/papeleria", (req,res)=>{
     const params = {
         tipo: parseFloat(req.query.tipo),
-        total: 0,
         lista: data,
        
     }
     res.render("preexamen",params);
 })
 app.post("/papeleria", (req,res)=>{
-    const total = parseInt(req.body.total);
     const params = {
         tipo: parseInt(req.body.tipo),
-        total : total,
         lista: data,
     }
     res.render("preexamen",params);

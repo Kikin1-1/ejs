@@ -26,10 +26,9 @@
                         <option value="2" <%= tipo === 2 ? 'selected' : '' %>>Tipo 2</option>
                         <option value="3" <%= tipo === 3 ? 'selected' : '' %>>Tipo 3</option>
                     </select>
-                    <input type="hidden" name="total" value="1">
                 </div>
                 
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
                     <a href="/papeleria" class="btn btn-secondary">Limpiar</a>
                 
             </form>
@@ -53,7 +52,7 @@
                         let totalCostoVenta = 0;
                         let totalGanancia = 0;
                         let totalCantidad = 0;
-                        if (total == 1) { 
+                        if (tipo) { 
                             for (let i = 0; i < lista.length; i++) { 
                                 if (lista[i].tipo == tipo) { 
                                     let costo_de_venta = lista[i].costo * 1.15;
@@ -82,7 +81,8 @@
                             <td><strong><%= totalCosto.toFixed(2) %></strong></td>
                             <td><strong><%= totalCostoVenta.toFixed(2) %></strong></td>
                             <td><strong><%= totalCantidad %></strong></td>
-                            <td colspan="2"></td>
+                            <td></td>
+                            
                         </tr>
                         <tr>
                             <th colspan="2"><strong>Ganancia</strong></th>
