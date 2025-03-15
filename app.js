@@ -9,6 +9,7 @@ const path = require('path');
 
 let datos = JSON.parse(fs.readFileSync("datos.json","utf8"));
 let data = JSON.parse(fs.readFileSync("productos.json","utf8"));
+let info = JSON.parse(fs.readFileSync("alumnos.json","utf8"));
 const app = express();
 app.set("view engine", "ejs");
 
@@ -35,7 +36,25 @@ app.post("/papeleria", (req,res)=>{
     }
     res.render("preexamen",params);
 })
-
+app.get("/calificaciones", (req,res)=>{
+    const params = {
+        nivel: parseFloat(req.query.nivel),
+        turno: parseFloat(req.query.turno),
+        vista: parseFloat(req.query.vista),
+        inf: info,
+       
+    }
+    res.render("examen",params);
+})
+app.post("/calificaciones", (req,res)=>{
+    const params = {
+        nivel: parseInt(req.body.nivel),
+        turno: parseInt(req.body.turno),
+        vista: parseInt(req.body.vista),
+        inf: info,
+    }
+    res.render("examen",params);
+})
 
 app.get("/practica1",(req,res)=>{
     res.render("practica01",{numero:""});
