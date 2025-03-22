@@ -101,6 +101,32 @@ app.post("/pago",(req,res)=>{
     }
     res.render("practica03",params);
 })
+app.get("/docentes",(req,res)=>{
+    const params = {
+        docente: req.query.docente,
+        nombre: req.query.nombre,
+        domicilio: req.query.domicilio,
+        nivel: req.query.nivel,
+        pago: req.query.pago,
+        horas: req.query.horas,
+        hijos: req.query.hijos,
+    }
+
+
+    res.render("recuperacion",params);
+})
+app.post("/docentes",(req,res)=>{
+    const params = {
+        docente: req.body.docente,
+        nombre: req.body.nombre,
+        domicilio: req.body.domicilio,
+        nivel: parseFloat(req.body.nivel),
+        pago: req.body.pago,
+        horas: req.body.horas,
+        hijos: parseFloat(req.body.hijos),
+    }
+    res.render("recuperacion",params);
+})
 
 
 app.post("/p01",(req,res)=>{

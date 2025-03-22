@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <title>Nodejs</title>
+    <style>
+        #formulario {
+            max-width: 50%; 
+        }
+    </style>
+</head>
+
+<body class="container">
+    <%- include('partials/header.ejs') %>
+    <%- include('partials/nav.ejs') %>
+        <center>
+        
+            <h2>Docentes</h2>
+        </center>
+        <div class="container mt-5">
+            
+            <center>
+            <form action="/docentes" method="post" class="mb-4" id="formulario">
+                <div class="form-group">
+                    <center>
+                    <label for="">Num.Docente</label>
+                    <input type="number" class="form-control" name="docente" id="docente" value="<%= docente %>" required>
+                    <label for="pinicial">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="<%= nombre %>" required>
+                    <label for="">Domicilio</label>
+                    <input type="text" class="form-control" name="domicilio" id="domicilio" value="<%= domicilio %>" required>
+                    <label for="nivel">Nivel</label>
+                    <select name="nivel" id="nivel" class="form-control">
+                        <option value="1.3" <%= nivel === 1.3 ? 'selected' : '' %>>Nivel 1</option>
+                        <option value="1.5" <%= nivel === 1.5 ? 'selected' : '' %>>Nivel 2</option>
+                        <option value="2" <%= nivel === 2 ? 'selected' : '' %>>Nivel 3</option>
+                    </select>
+                    <label for="pago">Pago Hora Base</label>
+                    <input type="number" class="form-control" name="pago" id="pago" value="<%= pago %>" required>
+                    <label for="horas">Horas Impartidas</label>
+                    <input type="text" class="form-control" name="horas" id="horas" value="<%= horas %>" required>
+                    <label for="hijos">Seleccione el numero de Hijos</label>
+                    <select name="hijos" id="hijos" class="form-control">
+                        <option value=".05" <%= hijos === .05 ? 'selected' : '' %>>1 o 2 hijos</option>
+                        <option value=".1" <%= hijos === .1 ? 'selected' : '' %>>3 a 5 hijos</option>
+                        <option value=".20" <%= hijos === .2 ? 'selected' : '' %>>5 o mas hijos</option>
+                    </select>
+                </center>
+                </div>
+                
+                    <button type="submit" class="btn btn-primary">Calcular</button>
+                    <a href="/docentes" class="btn btn-secondary">Limpiar</a>
+                
+            </form>
+        </center>
+
+            <% if (docente) { 
+                let pagoHora = (pago * horas) * nivel;
+                let bono = pagoHora * hijos;
+                let impuestos = pagoHora * .16;
+                let totalPagar = pagoHora + bono - impuestos;
+                
+                %>
+            <center>
+                <hr>
+                <div class="container-mt-5">
+                    <h3>Detalles del Pago</h3>
+                    <br>
+                    <label for=""><strong>Pago por Horas Impartidas: <%= pagoHora %></strong></label>
+                    <br>
+                    <label for=""><strong>Pago por Bono: $ <%= bono %></strong></label>
+                    <br>
+                    <label for=""><strong>Impuestos: $ <%= impuestos %></strong></label>
+                    <br>
+                    <label for=""><strong>Total a Pagar: $ <%= totalPagar %></strong></label>
+                </div>
+                <br>
+                
+            </center>
+            <% } %>
+        </div>
+    
+</body>
+<%- include('partials/footer.ejs') %>
+</html>
