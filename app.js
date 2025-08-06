@@ -142,7 +142,7 @@ app.post("/p01",(req,res)=>{
 
 
 
-const puerto = 3000;
-app.listen(puerto, () => {
-    console.log("El puerto te esta escuchando");
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en puerto ${PORT}`);
 });
