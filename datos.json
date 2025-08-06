@@ -7,12 +7,12 @@
     },{
         "matricula": 2022032044,
         "nombre": "Marco Vinicius Jr",
-        "sexo": "Dudoso",
+        "sexo": "M",
         "materias": ["Programación Web","Base de Datos","Ingles"]
     },{
         "matricula": 2022030001,
         "nombre": "Angelito Guti Romero",
-        "sexo": "Muy Macho",
+        "sexo": "M",
         "materias": ["Programación Web","Base de Datos","Ingles"]
     }
 ]
